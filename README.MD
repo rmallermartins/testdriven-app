@@ -1,5 +1,7 @@
 # Testdriven-app
 
+[![Build Status](https://travis-ci.org/rmallermartins/testdriven-app.svg?branch=master)](https://travis-ci.org/rmallermartins/testdriven-app)
+
 
 ## Facilidades
 
