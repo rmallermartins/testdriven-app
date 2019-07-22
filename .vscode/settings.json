@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/home/rodrigo/Envs/testdriven-app-users-dev/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "yapf"
+}
