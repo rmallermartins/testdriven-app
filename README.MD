@@ -30,13 +30,19 @@ Abrir relatório de cobertura de código em HTML:
 $ open services/users/htmlcov/index.html
 ```
 
+Rodar Flake8 (checagem de estilo de código e erros de programação):
+
+```shell
+$ dc exec users flake8 project
+```
+
 
 ## Local
 
 Atualizar os containers (novas dependencias, alteração nas imagens, etc...)
 
 ```shell
-$ sc up -d --build
+$ dc up -d --build
 ```
 
 
