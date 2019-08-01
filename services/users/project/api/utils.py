@@ -4,9 +4,11 @@ from flask import request, jsonify
 
 from project.api.models import User
 
+
 def is_admin(user_id):
     user = User.query.filter_by(id=user_id).first()
     return user.admin
+
 
 def authenticate(f):
     @wraps(f)
@@ -28,6 +30,7 @@ def authenticate(f):
             return jsonify(response_object), 401
         return f(resp, *args, **kwargs)
     return decorated_function
+
 
 def authenticate_restful(f):
     @wraps(f)
