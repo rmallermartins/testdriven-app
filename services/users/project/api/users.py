@@ -4,6 +4,7 @@ from sqlalchemy import exc
 
 from project import db
 from project.api.models import User
+from project.api.utils import authenticate_restful, is_admin
 
 
 users_blueprint = Blueprint('users', __name__, template_folder='./templates')
@@ -19,6 +20,9 @@ class UsersPing(Resource):
 
 
 class UsersList(Resource):
+
+    method_decorators = {'post': [authenticate_restful]}
+
     def get(self):
         """Lista todos usuários"""
         response_object = {
@@ -29,13 +33,18 @@ class UsersList(Resource):
         }
         return response_object, 200
 
-    def post(self):
+    def post(self, resp):
         post_data = request.get_json()
 
         response_object = {
             'status': 'fail',
             'message': 'Invalid payload.'
         }
+
+        if not is_admin(resp):
+            response_object['message'] = 'You do not have permission to do that.'
+            return response_object, 401
+
         if not post_data:
             return response_object, 400
 
@@ -47,8 +56,7 @@ class UsersList(Resource):
             user = User.query.filter_by(email=email).first()
             if not user:
                 db.session.add(User(
-                    username=username, email=email, password=password)
-                )
+                    username=username, email=email, password=password))
                 db.session.commit()
                 response_object = {
                     'status': 'success',
