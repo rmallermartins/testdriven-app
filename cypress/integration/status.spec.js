@@ -24,8 +24,7 @@ describe('Status', () => {
       .get('input[name="username"]').type(username)
       .get('input[name="email"]').type(email)
       .get('input[name="password"]').type(password)
-      .get('input[type="submit"]').click()
-      .get('.navbar-burger').click();
+      .get('input[type="submit"]').click();
 
     cy.wait(500);
 
