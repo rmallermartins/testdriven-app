@@ -26,7 +26,7 @@ describe('Status', () => {
       .get('input[name="password"]').type(password)
       .get('input[type="submit"]').click();
 
-    cy.wait(500);
+    cy.wait(1000);
 
     // assert '/status' is displayed properly
     cy.visit('/status');
