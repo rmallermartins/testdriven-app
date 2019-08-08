@@ -37,12 +37,35 @@ $ dc exec users flake8 project
 ```
 
 
-## Local
+## Dev
+
+Variáveis de ambiente:
+
+```shell
+$ export REACT_APP_USERS_SERVICE_URL=http://localhost
+```
 
 Atualizar os containers (novas dependencias, alteração nas imagens, etc...)
 
 ```shell
 $ dc up -d --build
+```
+
+## Hom
+
+Variáveis de ambiente:
+
+```shell
+$ export REACT_APP_USERS_SERVICE_URL=http://DOCKER_MACHINE_STAGING_IP
+```
+
+## Prod
+
+Variáveis de ambiente:
+
+```shell
+$ export REACT_APP_USERS_SERVICE_URL=http://DOCKER_MACHINE_PROD_IP
+$ export SECRET_KEY=SOMETHING_SUPER_SECRET
 ```
 
 
@@ -95,4 +118,43 @@ Apontar o Docker para o localhost novamente:
 
 ```shell
 $ eval $(dm env -u)
+```
+
+
+## Testes
+
+Rodar testes backend:
+
+```shell
+$ docker-compose exec users python manage.py test
+```
+
+Cliente:
+
+```shell
+$ docker-compose exec client npm run coverage
+```
+
+e2e:
+
+```shell
+$ ./node_modules/.bin/cypress open --config baseUrl=http://localhost
+```
+
+Usando script:
+
+```shell
+$ sh test.sh server
+$ sh test.sh client
+$ sh test.sh e2e
+$ sh test.sh all
+```
+
+
+## Swagger
+
+Atualizar swagger.json:
+
+```shell
+$ python services/swagger/update-spec.py http://localhost
 ```
