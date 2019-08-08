@@ -32,13 +32,13 @@ e2e() {
 }
 
 # run appropriate tests
-if [[ "${env}" == "development" ]]; then
+if [[ "${env}" == "develop" ]]; then
   echo "Running client and server-side tests!"
   dev
 elif [[ "${env}" == "staging" ]]; then
   echo "Running e2e tests!"
   e2e stage
-elif [[ "${env}" == "production" ]]; then
+elif [[ "${env}" == "prod" ]]; then
   echo "Running e2e tests!"
   e2e prod
 else
