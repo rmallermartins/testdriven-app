@@ -6,7 +6,7 @@ then
   if [[ "$TRAVIS_BRANCH" == "staging" ]]; then
     export DOCKER_ENV=stage
   elif [[ "$TRAVIS_BRANCH" == "production" ]]; then
-    export DOCKER_ENV=production
+    export DOCKER_ENV=prod
   fi
 
   if [ "$TRAVIS_BRANCH" == "staging" ] || \
